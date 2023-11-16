@@ -22,3 +22,5 @@ p t.kolonaBrojeva.avg
 p t.stringovi.map { |cell| cell.upcase }
 p t.stringovi.select { |cell| cell.size < 4 }
 p t.stringovi.three
+t1 = t.clone
+p t+t1

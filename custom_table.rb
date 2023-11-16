@@ -31,7 +31,7 @@ class CustomTable
   def make_columns
     (1..@table[0].size).each do |col|
       column = []
-      @table.each do |row|
+      @table[1..@table.size-1].each do |row|
         column << row[col-1]
       end
       title = @table[0][col-1].gsub(" ", "")
@@ -60,6 +60,18 @@ class CustomTable
 
   def method_missing(col, *args)
     self[col]
+  end
+
+  def +(t1)
+    sum = []
+    i = 1
+    if @table[0] == t1.table[0]
+      @table[1..@table.size-1].each do |row|
+        sum << row + t1.table[i]
+        i += 1
+      end
+    end
+    sum
   end
 
 end
