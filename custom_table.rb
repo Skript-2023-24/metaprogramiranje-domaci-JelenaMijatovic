@@ -74,4 +74,18 @@ class CustomTable
     sum
   end
 
+  def -(t1)
+    diff = []
+    i = 1
+    if @table[0] == t1.table[0]
+      @table[1..@table.size-1].each do |row|
+        if row != t1.table[i]
+          diff << row
+        end
+        i += 1
+      end
+    end
+    diff
+  end
+
 end

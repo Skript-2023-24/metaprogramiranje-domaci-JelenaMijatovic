@@ -22,5 +22,8 @@ p t.kolonaBrojeva.avg
 p t.stringovi.map { |cell| cell.upcase }
 p t.stringovi.select { |cell| cell.size < 4 }
 p t.stringovi.three
-t1 = t.clone
+
+t1 = CustomTable.new(ws)
 p t+t1
+t1.row(2)[2]= "42"
+p t-t1
