@@ -20,7 +20,7 @@ class CustomTable
     (1..@worksheet.num_rows).each do |row|
       crow = []
       (1..@worksheet.num_cols).each do |col|
-        crow << @worksheet[col, row]
+        crow << @worksheet[row, col]
       end
       unless crow.include?("total") || crow.include?("subtotal") 
         @table << crow
@@ -29,25 +29,25 @@ class CustomTable
   end
 
   def make_columns
-    (1..@worksheet.num_cols).each do |col|
+    (1..@table[0].size).each do |col|
       column = []
-      (2..@worksheet.num_rows).each do |row|
-          column << @worksheet[row, col]
+      @table.each do |row|
+        column << row[col-1]
       end
-      title = @worksheet[1, col].gsub(" ", "")
+      title = @table[0][col-1].gsub(" ", "")
       title[0] = title[0].downcase
       @columns[title]= CustomColumn.new(column)
     end
   end
 
   def row(num)
-    @worksheet.rows[num]
+    @table[num]
   end
 
   def each
-    (1..@worksheet.num_rows).each do |row|
-      (1..@worksheet.num_cols).each do |col|
-        yield @worksheet[row, col]
+    @table.each do |row|
+      (1..row.size).each do |col|
+        yield row[col-1]
       end
     end
   end

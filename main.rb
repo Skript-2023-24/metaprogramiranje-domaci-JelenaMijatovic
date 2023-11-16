@@ -8,7 +8,7 @@ t = CustomTable.new(ws)
 
 p t.table
 
-p t.row(2)[1]
+p t.row(2)[2]
 
 t.each {|cell| puts cell}
 
