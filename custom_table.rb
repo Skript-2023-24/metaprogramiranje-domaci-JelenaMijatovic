@@ -22,7 +22,7 @@ class CustomTable
       (1..@worksheet.num_cols).each do |col|
         crow << @worksheet[row, col]
       end
-      unless crow.include?("total") || crow.include?("subtotal") 
+      unless crow.include?("total") || crow.include?("subtotal") || crow.all?{ |element| element == "" }
         @table << crow
       end
     end
